@@ -27,8 +27,11 @@ namespace Gtpx.Cloud.Api.Web.Logger
             var stackTrace = new System.Diagnostics.StackTrace(1); // skip one frame as this is the Log function frame
             var name = stackTrace.GetFrame(0).GetMethod().Name;
             var message = formatter(state, exception);
-            Console.WriteLine(state.GetType().FullName);
-            //Console.WriteLine(state.GetType().FullName.PadRight(30) + " " + message);
+            // Console.WriteLine(state.GetType().FullName);  // Keeps showing Microsoft.Extensions.Logging.FormattedLogValues, I thought it would be the type used in ILogger<Type>.
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{DateTime.Now} ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{message}");
         }
     }
 }
